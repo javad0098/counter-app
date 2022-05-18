@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import Counter from "./component/counter";
+import bootstrap from "bootstrap/dist/css/bootstrap.css";
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <main className="p-4">
+    <Counter />
+  </main>
 );
 
 // If you want to start measuring performance in your app, pass a function
