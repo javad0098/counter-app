@@ -1,51 +1,40 @@
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { counter, library } from "@fortawesome/fontawesome-svg-core";
 import React, { Component } from "react";
 class Counter extends Component {
-  state = {
-    count: 1,
-    tags: ["number1", "number2", "number3", "number4", "number5"],
-  };
   formatCount() {
-    const { count } = this.state;
-    return count ? this.state.count : "zero";
+    return this.props.counter.value ? this.props.counter.value : "zero";
   }
-  handleIncreament = () => {
-    const count = this.state.count + 1;
-    this.setState({ count });
-  };
-  handleDecreament = () => {
-    const count = this.state.count - 1;
-    this.setState({ count });
-  };
 
   render() {
     return (
-      <React.Fragment>
+      <div>
         <span className={this.classess()}>{this.formatCount()}</span>
         <button
-          onClick={this.handleDecreament}
-          className="m-1 btn btn-danger btn-sm"
+          onClick={() => this.props.onHandleDecreament(this.props.counter)}
+          className="m-1 btn btn-warning btn-sm"
         >
           -
         </button>
         <button
-          onClick={this.handleIncreament}
+          onClick={() => this.props.onHandleIncreament(this.props.counter)}
           className="m-1 btn btn-secondary btn-sm"
         >
           +
         </button>
-        <ul>
-          {this.state.tags.map((tag) => (
-            <li key={tag}>tag</li>
-          ))}
-        </ul>
-      </React.Fragment>
+
+        <button
+          onClick={() => this.props.onDelete(this.props.counter.id)}
+          className="m-1 btn btn-danger btn-sm"
+        >
+          Big Fat Delete
+        </button>
+      </div>
     );
   }
 
   classess() {
     let classes = "badge m-3  bg-";
-    classes += this.state.count ? "primary" : "warning";
+    classes += this.props.counter.value ? "primary" : "warning";
     return classes;
   }
 }
